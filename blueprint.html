@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Your Project Blueprint - SIRI LIVING</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="blueprint-style.css">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="favicon.png">
+</head>
+<body>
+    <header class="simple-header">
+        <div class="container">
+            <a href="index.html" class="logo"><img src="logo.png" alt="SIRI LIVING Logo"></a>
+        </div>
+    </header>
+
+    <main>
+        <div class="questionnaire-container">
+            <h1>Create Your Personalized Blueprint</h1>
+            <p class="subtitle">Answer a few questions to help us tailor the perfect blueprint for your vision.</p>
+            
+            <div class="progress-bar">
+                <div class="progress-bar-fill"></div>
+            </div>
+
+            <form name="blueprint-form" class="blueprint-form">
+                <div class="form-step active">
+                    <h2>Step 1: Choose Your Core Style</h2>
+                    <p>Select ONE main architectural style that you prefer.</p>
+                    <div class="style-grid" id="main-style-grid">
+                        </div>
+                    <input type="hidden" name="MainStyle" id="main-style-input" required>
+                    <div class="validation-message" id="main-style-validation">Please select one style.</div>
+                    <div class="navigation-buttons">
+                        <button type="button" class="btn-next">Next <i class='bx bx-right-arrow-alt'></i></button>
+                    </div>
+                </div>
+
+                <div class="form-step">
+                    <h2>Step 2: Select Reference Images</h2>
+                    <p>Now, select at least 2 images that inspire you for your project.</p>
+                    <div class="style-grid" id="ref-image-grid">
+                        </div>
+                    <input type="hidden" name="SelectedStyles" id="selected-styles-input" required>
+                    <div class="validation-message" id="ref-image-validation">Please select at least 2 images.</div>
+                    <div class="navigation-buttons">
+                        <button type="button" class="btn-prev"><i class='bx bx-left-arrow-alt'></i> Previous</button>
+                        <button type="button" class="btn-next">Next <i class='bx bx-right-arrow-alt'></i></button>
+                    </div>
+                </div>
+
+                <div class="form-step">
+                    <h2>Step 3: Tell Us About Your Project</h2>
+                    <div class="form-group">
+                        <label for="land-status">Do you already own land in the Hua Hin / Pranburi area?</label>
+                        <select id="land-status" name="LandStatus" required>
+                            <option value="" disabled selected>Please select an option</option>
+                            <option value="Yes, I own land">Yes, I own the land</option>
+                            <option value="I am currently looking for land">I am currently looking for land</option>
+                            <option value="I need assistance with finding land">I need assistance with finding land</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="approx-size">What is the approximate size of the villa you envision (in Sq.M.)?</label>
+                        <input type="number" id="approx-size" name="ApproximateSize" placeholder="e.g., 300" required>
+                    </div>
+                    <div class="navigation-buttons">
+                        <button type="button" class="btn-prev"><i class='bx bx-left-arrow-alt'></i> Previous</button>
+                        <button type="button" class="btn-next">Next <i class='bx bx-right-arrow-alt'></i></button>
+                    </div>
+                </div>
+
+                <div class="form-step">
+                    <h2>Step 4: Budget & Timeline</h2>
+                    <div class="form-group">
+                        <label for="budget-range">What is your estimated budget for construction? (excluding land)</label>
+                        <select id="budget-range" name="BudgetRange" required>
+                            <option value="" disabled selected>Please select a range</option>
+                            <option value="$150k - $250k USD (5M - 8.5M THB)">$150k - $250k USD (5M - 8.5M THB)</option>
+                            <option value="$250k - $400k USD (8.5M - 14M THB)">$250k - $400k USD (8.5M - 14M THB)</option>
+                            <option value="$400k - $600k USD (14M - 20M THB)">$400k - $600k USD (14M - 20M THB)</option>
+                            <option value="$600k+ USD (20M+ THB)">$600k+ USD (20M+ THB)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="timeline">When are you hoping to start construction?</label>
+                        <select id="timeline" name="Timeline" required>
+                            <option value="" disabled selected>Please select a timeframe</option>
+                            <option value="As soon as possible">As soon as possible</option>
+                            <option value="Within 3-6 months">Within 3-6 months</option>
+                            <option value="Within 6-12 months">Within 6-12 months</option>
+                            <option value="More than 12 months from now">More than 12 months from now</option>
+                        </select>
+                    </div>
+                    <div class="navigation-buttons">
+                        <button type="button" class="btn-prev"><i class='bx bx-left-arrow-alt'></i> Previous</button>
+                        <button type="button" class="btn-next">Next <i class='bx bx-right-arrow-alt'></i></button>
+                    </div>
+                </div>
+                
+                <div class="form-step">
+                    <h2>Final Step: Your Contact Information</h2>
+                    <p>We'll use this information to send your free blueprint and follow up with you. There is no payment required.</p>
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="Name" placeholder="e.g., John Doe" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="Email" placeholder="e.g., john.doe@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="Phone" placeholder="e.g., +66 81 234 5678" required>
+                    </div>
+                    <div class="navigation-buttons">
+                        <button type="button" class="btn-prev"><i class='bx bx-left-arrow-alt'></i> Previous</button>
+                        <button type="submit" id="submit-btn" class="btn-submit">Submit Blueprint Request</button>
+                    </div>
+                    <div id="form-status"></div>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <footer class="simple-footer">
+        <p>&copy; 2025 SIRI LIVING. All Rights Reserved.</p>
+    </footer>
+
+    <script src="blueprint-script.js"></script>
+</body>
+</html>
