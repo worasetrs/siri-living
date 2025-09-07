@@ -25,6 +25,14 @@
     --accent-color: #C19A6B;
     --text-color: #333333;
     --text-light: #555555;
+
+    /* A bright green used exclusively for the secondary CTA in the hero section. It
+       stands out against the dark overlay and differentiates the call option from
+       other buttons. */
+    --cta-green: #28a745;
+
+    /* Orange hue used for the Insights navigation link */
+    --nav-orange: #e67e22;
     
     --font-heading: 'Poppins', sans-serif;
     --font-body: 'Lato', sans-serif;
@@ -152,22 +160,44 @@ section {
  * border. On hover it fills with the accent colour.
  */
 .btn-call-secondary {
-    background-color: transparent;
-    color: var(--white-color);
-    border: 2px solid var(--accent-color);
-    padding: 12px 28px;
+    /* Make the 15‑minute call button stand out more than other buttons.
+       Use a vivid green background and white text, signalling action (call) and
+       differentiating it from the gold accent used elsewhere. */
+    background-color: var(--cta-green) !important;
+    color: var(--white-color) !important;
+    border: 3px solid var(--cta-green) !important;
+    padding: 16px 36px;
     font-family: var(--font-heading);
     font-weight: 600;
-    font-size: 1rem;
+    /* Increase the font size slightly so the call button draws more attention */
+    font-size: 1.1rem;
     border-radius: 5px;
     transition: all 0.3s ease;
     display: inline-block;
     text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
 }
 .btn-call-secondary:hover {
-    background-color: var(--accent-color);
+    /* Darken the green slightly on hover for a subtle depth effect */
+    background-color: #218838;
     color: var(--white-color);
+    border-color: #218838 !important;
     transform: translateY(-3px);
+}
+
+/*
+ * Hero CTA group styling
+ * Add spacing between the primary CTA and the secondary 15‑minute call button,
+ * and allow the two buttons to wrap on smaller screens. Without this rule,
+ * the buttons sit flush against each other. Using flexbox with a gap
+ * introduces breathing space and improves visual hierarchy.
+ */
+.cta-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
 }
 
 .btn-large {
@@ -229,6 +259,26 @@ section {
     padding: 8px 20px;
     font-size: 0.9rem;
     background-color: var(--accent-color);
+    color: var(--white-color);
+}
+
+/* Style for the Insights navigation link on the main header. It uses a bright
+   orange colour to draw attention and a subtle border. On hover it inverts
+   to a filled button. A right margin creates separation from the adjacent
+   Start Your Blueprint button. */
+.nav-link {
+    color: var(--nav-orange);
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-right: 15px;
+    padding: 6px 16px;
+    border: 2px solid var(--nav-orange);
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+.nav-link:hover {
+    background-color: var(--nav-orange);
     color: var(--white-color);
 }
 
@@ -734,6 +784,25 @@ section {
     }
 }
 
+/* Small screens (phones) */
+@media (max-width: 600px) {
+    /* Display portfolio items in a two-column grid on mobile devices. The smaller
+       minmax value ensures the thumbnails shrink gracefully and maintains a
+       balanced layout. */
+    .portfolio-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
+    /* Adjust the size of the CTA buttons in the hero section for better
+       readability on small screens and add spacing between them */
+    .cta-group {
+        gap: 15px;
+    }
+    .btn-call-secondary {
+        font-size: 1rem;
+        padding: 14px 32px;
+    }
+}
+
 /* Desktops */
 @media (min-width: 1024px) {
     .process-timeline::after { left: 50%; transform: translateX(-50%); }
@@ -756,3 +825,4 @@ section {
         transform: translate(-50%, 0);
     }
 }
+

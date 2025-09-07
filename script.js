@@ -64,11 +64,15 @@ document.addEventListener('DOMContentLoaded', () => {
     portfolioSection.appendChild(loadMoreContainer);
 
     let currentFilter = 'all';
-    let showAllPortfolio = false;
+    // Instead of a simple show/hide toggle we use counters to reveal items in chunks.
     const initialItemsToShow = 8; // number of items to show by default on “all”
+    const itemsPerClick = 6;      // number of additional items to show per click
+    let displayedCount = initialItemsToShow; // how many items are currently visible in "all" view
+    let currentTotalMatches = 0;  // total number of items matching the current filter
 
     function updatePortfolioDisplay() {
         let visibleCount = 0;
+        let totalMatches = 0;
         portfolioItems.forEach(item => {
             const category = item.getAttribute('data-category');
             const matchesFilter = (currentFilter === 'all' || category === currentFilter);
@@ -76,18 +80,24 @@ document.addEventListener('DOMContentLoaded', () => {
                 item.style.display = 'none';
                 return;
             }
-            // In the “all” filter hide excess items unless showAllPortfolio is true
-            if (currentFilter === 'all' && !showAllPortfolio && visibleCount >= initialItemsToShow) {
-                item.style.display = 'none';
-            } else {
-                item.style.display = 'block';
-            }
-            visibleCount++;
+                totalMatches++;
+                if (currentFilter === 'all' && visibleCount >= displayedCount) {
+                    // hide items beyond the current limit
+                    item.style.display = 'none';
+                } else {
+                    item.style.display = 'block';
+                    visibleCount++;
+                }
         });
-        // Control visibility of the load-more button
-        if (currentFilter === 'all' && visibleCount > initialItemsToShow) {
+        currentTotalMatches = totalMatches;
+        // Control visibility and label of the load-more button
+        if (currentFilter === 'all' && totalMatches > initialItemsToShow) {
             loadMoreContainer.style.display = 'block';
-            loadMoreBtn.textContent = showAllPortfolio ? 'Show Less' : 'See More';
+            if (displayedCount >= totalMatches) {
+                loadMoreBtn.textContent = 'Show Less';
+            } else {
+                loadMoreBtn.textContent = 'See More';
+            }
         } else {
             loadMoreContainer.style.display = 'none';
         }
@@ -99,14 +109,21 @@ document.addEventListener('DOMContentLoaded', () => {
             button.classList.add('active');
             // reset state when switching filters
             currentFilter = button.getAttribute('data-filter');
-            showAllPortfolio = false;
+            displayedCount = initialItemsToShow;
             updatePortfolioDisplay();
         });
     });
 
     loadMoreBtn.addEventListener('click', () => {
-        // toggle the expanded state and refresh the grid
-        showAllPortfolio = !showAllPortfolio;
+        // If there are still hidden items, show the next chunk; otherwise reset to initial view
+        if (displayedCount < currentTotalMatches) {
+            displayedCount += itemsPerClick;
+            if (displayedCount > currentTotalMatches) {
+                displayedCount = currentTotalMatches;
+            }
+        } else {
+            displayedCount = initialItemsToShow;
+        }
         updatePortfolioDisplay();
     });
 

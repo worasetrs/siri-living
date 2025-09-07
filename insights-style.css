@@ -1,0 +1,134 @@
+/*
+ * Styles specific to the Insights page. This file provides the layout
+ * and typography for the articles, hero section and footnotes.
+ */
+
+/* Hero section for the Insights page */
+.insights-hero {
+    background-color: var(--secondary-color);
+    padding: 100px 0 60px;
+    text-align: center;
+}
+
+.insights-hero h1 {
+    font-size: 2.4rem;
+    margin-bottom: 20px;
+    color: var(--primary-color);
+}
+
+.insights-hero p {
+    max-width: 700px;
+    margin: 0 auto;
+    color: var(--text-light);
+    font-size: 1.1rem;
+}
+
+/* Generic section styling for Insights */
+.insights-section {
+    padding: 60px 0;
+}
+
+.insights-section h2 {
+    margin-bottom: 40px;
+    text-align: center;
+    font-size: 2rem;
+    color: var(--primary-color);
+}
+
+/* Individual article styling */
+.insights-article {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    margin-bottom: 40px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.insights-article img {
+    width: 260px;
+    flex-shrink: 0;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.insights-article-content {
+    flex: 1;
+}
+
+.insights-article-content h3 {
+    font-size: 1.4rem;
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: var(--primary-color);
+}
+
+.insights-article-content p {
+    margin-bottom: 10px;
+    color: var(--text-light);
+    line-height: 1.7;
+}
+
+.insights-article-content p:last-child {
+    margin-bottom: 0;
+}
+
+.insights-article-content a {
+    font-size: 0.9rem;
+    color: var(--accent-color);
+    text-decoration: underline;
+}
+
+/* Footnotes section */
+.footnotes {
+    background-color: var(--secondary-color);
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+
+.footnotes h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: var(--primary-color);
+}
+
+.footnotes ol {
+    font-size: 0.85rem;
+    color: var(--text-light);
+    padding-left: 20px;
+}
+
+.footnotes li {
+    margin-bottom: 10px;
+}
+
+.return-footnote {
+    margin-left: 5px;
+}
+
+/* Client-facing version: hide inline footnote anchors and the entire footnotes section. 
+   The HTML retains references for editorial purposes, but these elements are hidden 
+   via CSS so that customers see a clean article without distracting citations. */
+.insights-article-content p a {
+    display: none;
+}
+.footnotes {
+    display: none;
+}
+
+/* Responsive design: stack article content on smaller screens */
+@media (max-width: 768px) {
+    .insights-article {
+        flex-direction: column;
+    }
+
+    .insights-article img {
+        width: 100%;
+        height: auto;
+        margin-bottom: 15px;
+    }
+
+    .insights-article-content h3 {
+        font-size: 1.3rem;
+    }
+}
